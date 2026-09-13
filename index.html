@@ -9,23 +9,6 @@
   </head>
   <body>
     <div id="app"></div>
-    <script>
-      (() => {
-        const migrationKey = 'amicy.botworld.migration.v1'
-        if (localStorage.getItem(migrationKey)) return
-        try {
-          const settingsKey = 'botcrossing.settings.v1'
-          const settings = JSON.parse(localStorage.getItem(settingsKey) || '{}')
-          settings.planet = 'terra'
-          settings.timeOfDay = 0.42
-          localStorage.setItem(settingsKey, JSON.stringify(settings))
-          localStorage.setItem(migrationKey, '1')
-        } catch {
-          // The app still works if storage is unavailable; this only seeds the AMICY look once.
-        }
-      })()
-    </script>
     <script type="module" src="/src/main.js"></script>
-    <script type="module" src="/src/amicy/bootstrap.js"></script>
   </body>
 </html>
