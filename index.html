@@ -10,5 +10,41 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script>
+      (() => {
+        const labels = {
+          building: 'working',
+          'need you': 'needs approval',
+          blocked: 'blocked',
+          shipped: 'complete',
+          crew: 'agents',
+        }
+
+        const applyAmicyLabels = () => {
+          const brand = document.querySelector('.brand')
+          if (brand) brand.childNodes[brand.childNodes.length - 1].textContent = 'AMICY Bot World'
+
+          document.querySelectorAll('.stat .lbl').forEach((el) => {
+            const key = el.textContent.trim().toLowerCase()
+            if (labels[key]) el.textContent = labels[key]
+          })
+
+          document.querySelectorAll('.sec-head span').forEach((el) => {
+            if (el.textContent.trim().toLowerCase() === 'repos') el.textContent = 'Workspaces'
+          })
+
+          const home = document.querySelector('#btn-home')
+          if (home) home.title = 'Reset AMICY Bot World view (0)'
+          const next = document.querySelector('#btn-next')
+          if (next) next.title = 'Next agent needing attention (N)'
+          const orbit = document.querySelector('#btn-orbit')
+          if (orbit) orbit.title = 'Orbit mode — sweep around AMICY Bot World (O)'
+        }
+
+        const observer = new MutationObserver(applyAmicyLabels)
+        observer.observe(document.documentElement, { childList: true, subtree: true })
+        applyAmicyLabels()
+      })()
+    </script>
   </body>
 </html>
