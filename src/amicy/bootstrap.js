@@ -66,10 +66,10 @@ function replaceExact(selector, from, to) {
 
 function applyAmicyUi() {
   const brand = document.querySelector('.brand')
-  if (brand) {
-    const textNode = [...brand.childNodes].find((node) => node.nodeType === Node.TEXT_NODE)
-    if (textNode && textNode.textContent.trim() !== 'AMICY Bot World') textNode.textContent = 'AMICY Bot World'
-  }
+  if (!brand) return false
+
+  const textNode = [...brand.childNodes].find((node) => node.nodeType === Node.TEXT_NODE)
+  if (textNode) textNode.textContent = 'AMICY Bot World'
 
   document.querySelectorAll('.stat .lbl').forEach((el) => {
     const key = el.textContent.trim().toLowerCase()
@@ -97,8 +97,14 @@ function applyAmicyUi() {
   if (orbit) orbit.title = 'Orbit mode — sweep around AMICY Bot World (O)'
 
   ensureCommandLayer()
+  return true
 }
 
-const observer = new MutationObserver(applyAmicyUi)
-observer.observe(document.documentElement, { childList: true, subtree: true })
-applyAmicyUi()
+let attempts = 0
+function bootAmicyUi() {
+  attempts += 1
+  if (applyAmicyUi() || attempts > 180) return
+  requestAnimationFrame(bootAmicyUi)
+}
+
+requestAnimationFrame(bootAmicyUi)
