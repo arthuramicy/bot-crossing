@@ -1,3 +1,5 @@
+import { AMICY_COMMAND_LAYER, AMICY_DEPARTMENTS } from './operations.js'
+
 const STATUS_LABELS = {
   building: 'working',
   'need you': 'needs approval',
@@ -51,7 +53,7 @@ function ensureCommandLayer() {
   if (!document.querySelector('.amicy-command-layer')) {
     const badge = document.createElement('div')
     badge.className = 'amicy-command-layer'
-    badge.innerHTML = '<i class="pulse"></i><span>Gabe Command Layer</span><small>online</small>'
+    badge.innerHTML = `<i class="pulse"></i><span>${AMICY_COMMAND_LAYER.name} Command Layer</span><small>online · ${AMICY_DEPARTMENTS.length} departments</small>`
     document.body.appendChild(badge)
   }
 }
@@ -66,7 +68,7 @@ function applyAmicyUi() {
   const brand = document.querySelector('.brand')
   if (brand) {
     const textNode = [...brand.childNodes].find((node) => node.nodeType === Node.TEXT_NODE)
-    if (textNode) textNode.textContent = 'AMICY Bot World'
+    if (textNode && textNode.textContent.trim() !== 'AMICY Bot World') textNode.textContent = 'AMICY Bot World'
   }
 
   document.querySelectorAll('.stat .lbl').forEach((el) => {
@@ -78,7 +80,7 @@ function applyAmicyUi() {
   replaceExact('#btn-close-project', 'all repos', 'All workspaces')
 
   const newTask = document.querySelector('#btn-new-session')
-  if (newTask) {
+  if (newTask && !newTask.textContent.toLowerCase().includes('new task')) {
     const icon = newTask.querySelector('svg')?.outerHTML || ''
     newTask.innerHTML = `${icon} New task`
     newTask.title = 'Start a new agent task in this workspace (C)'
