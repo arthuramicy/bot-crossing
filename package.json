@@ -1,26 +1,26 @@
 {
-  "name": "bot-crossing",
-  "version": "1.0.0",
+  "name": "amicy-bot-world",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A 3D colony sim where every coding-agent thread on your machine is a little astronaut building something.",
+  "description": "AMICY Bot World — a live 3D operations world for AMICY agents, projects, approvals, and command-layer activity.",
   "license": "MIT",
-  "author": "Jarren Rocks",
-  "homepage": "https://botcrossing.com",
+  "author": "AMICY LLC",
+  "homepage": "https://github.com/arthuramicy/bot-crossing",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jarrenrocks/bot-crossing.git"
+    "url": "git+https://github.com/arthuramicy/bot-crossing.git"
   },
   "bugs": {
-    "url": "https://github.com/jarrenrocks/bot-crossing/issues"
+    "url": "https://github.com/arthuramicy/bot-crossing/issues"
   },
   "keywords": [
-    "claude-code",
+    "amicy",
+    "ai-agents",
     "coding-agent",
     "three.js",
     "webgl",
-    "colony-sim",
-    "developer-tools",
+    "operations-world",
     "visualization"
   ],
   "engines": {
